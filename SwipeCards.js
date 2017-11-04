@@ -129,7 +129,8 @@ export default class SwipeCards extends Component {
     yupText: "Yup!",
     onClickHandler: () => { alert('tap') },
     onDragStart: () => {},
-    onDragRelease: () => {},
+		onDragRelease: () => {},
+		onPanResponderGrant: () => {},
     cardRemoved: (ix) => null,
     renderCard: (card) => null,
     style: styles.container,
@@ -165,7 +166,8 @@ export default class SwipeCards extends Component {
         return false;
       },
 
-      onPanResponderGrant: (e, gestureState) => {
+			onPanResponderGrant: (e, gestureState) => {
+				this.props.onPanResponderGrant();
         this.state.pan.setOffset({ x: this.state.pan.x._value, y: this.state.pan.y._value });
         this.state.pan.setValue({ x: 0, y: 0 });
       },
