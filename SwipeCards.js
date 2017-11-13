@@ -104,7 +104,8 @@ export default class SwipeCards extends Component {
     renderCard: PropTypes.func,
     cardRemoved: PropTypes.func,
     dragY: PropTypes.bool,
-    smoothTransition: PropTypes.bool
+    smoothTransition: PropTypes.bool,
+    indexOffset: PropTypes.number
   };
 
   static defaultProps = {
@@ -135,7 +136,8 @@ export default class SwipeCards extends Component {
     renderCard: (card) => null,
     style: styles.container,
     dragY: true,
-    smoothTransition: false
+    smoothTransition: false,
+    indexOffset: 0
   };
 
   constructor(props) {
@@ -143,7 +145,7 @@ export default class SwipeCards extends Component {
 
     //Use a persistent variable to track currentIndex instead of a local one.
     this.guid = this.props.guid || guid++;
-    if (!currentIndex[this.guid]) currentIndex[this.guid] = 0;
+    if (!currentIndex[this.guid]) currentIndex[this.guid] = this.props.indexOffset;
 
     this.state = {
       pan: new Animated.ValueXY(0),
