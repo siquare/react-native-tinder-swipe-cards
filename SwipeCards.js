@@ -104,7 +104,8 @@ export default class SwipeCards extends Component {
     renderCard: PropTypes.func,
     cardRemoved: PropTypes.func,
     dragY: PropTypes.bool,
-    smoothTransition: PropTypes.bool
+    smoothTransition: PropTypes.bool,
+    resetIndexWhenReceiveProps: PropTypes.bool
   };
 
   static defaultProps = {
@@ -135,7 +136,8 @@ export default class SwipeCards extends Component {
     renderCard: (card) => null,
     style: styles.container,
     dragY: true,
-    smoothTransition: false
+    smoothTransition: false,
+    resetIndexWhenReceiveProps: true
   };
 
   constructor(props) {
@@ -335,7 +337,10 @@ export default class SwipeCards extends Component {
         this.cardAnimation = null;
       }
 
-      currentIndex[this.guid] = 0;
+      if (resetIndexWhenReceiveProps) {
+        currentIndex[this.guid] = 0;
+      }
+      
       this.setState({
         cards: [].concat(nextProps.cards),
         card: nextProps.cards[0]
@@ -457,6 +462,10 @@ export default class SwipeCards extends Component {
     return <Animated.View key={"top"} style={[styles.card, animatedCardStyles]} {... this._panResponder.panHandlers}>
       {this.props.renderCard(this.state.card)}
     </Animated.View>;
+  }
+
+  renderVerticalStack() {
+
   }
 
   renderNope() {
