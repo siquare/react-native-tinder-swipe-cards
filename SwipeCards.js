@@ -337,13 +337,13 @@ export default class SwipeCards extends Component {
         this.cardAnimation = null;
       }
 
-      if (resetIndexWhenReceiveProps) {
+      if (this.props.resetIndexWhenReceiveProps) {
         currentIndex[this.guid] = 0;
       }
-      
+
       this.setState({
         cards: [].concat(nextProps.cards),
-        card: nextProps.cards[0]
+        card: nextProps.cards[currentIndex[this.guid]]
       });
     }
   }
