@@ -94,6 +94,7 @@ export default class SwipeCards extends Component {
     handleYup: PropTypes.func,
     handleMaybe: PropTypes.func,
     handleNope: PropTypes.func,
+    handleUndo: PropTypes.func,
     yupText: PropTypes.string,
     yupView: PropTypes.element,
     maybeText: PropTypes.string,
@@ -125,6 +126,7 @@ export default class SwipeCards extends Component {
     handleYup: (card) => null,
     handleMaybe: (card) => null,
     handleNope: (card) => null,
+    handleUndo: (card) => null,
     nopeText: "Nope!",
     maybeText: "Maybe!",
     yupText: "Yup!",
@@ -316,6 +318,7 @@ export default class SwipeCards extends Component {
     this.setState({
       card: this.state.cards[currentIndex[this.guid]]
     });
+    this.props.handleUndo(this.getCurrentCard);
   }
 
   componentDidMount() {
